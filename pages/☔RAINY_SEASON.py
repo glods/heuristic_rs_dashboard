@@ -752,13 +752,13 @@ elif st.checkbox('FLOODING ESTIMATES 💦'):
         dataval = pd.read_csv('data/DATA_TO_SHARE/rain_2022_update/grid52/flooding_Dagana2022.csv')
         datap = pd.read_csv('data/DATA_TO_SHARE/rain_2022_update/grid52/flooding_proportion_Dagana2022.csv')
         st.write('DATA - FLOODING')
-        if st.checkbox('Show raw data'):
+        if st.checkbox('Show raw data_'):
             st.write(dataval)
         st.write('DATA - PROPORTION')
         # st.write(datap)
         st.write('=========== Complete images - ')
         data_upda = pd.read_csv('data/DATA_TO_SHARE/rain_2022_update/grid52/up/flooding_proportion_Dagana2022.csv')
-        if st.checkbox('Show raw data'):
+        if st.checkbox('Show raw data.'):
             st.write(data_upda)
 
         st.write('----------------------------')
@@ -907,7 +907,8 @@ elif st.checkbox('FLOODING ESTIMATES 💦'):
         with fig_col1_pred:
             #-------------------------------
             st.write('----------- THE PREDICTION STARTS IN JULY -----------------')
-            st.write(data)
+            if st.checkbox('Show raw data-'):
+                st.write(data)
             #----------------------------------
             x='time_t'
             y ='area_t'
@@ -949,7 +950,8 @@ elif st.checkbox('FLOODING ESTIMATES 💦'):
             #     chart,
             #     use_container_width=True
             # )
-            st.write(data_hist22)
+            if st.checkbox('Show raw data-.'):
+                st.write(data_hist22)
             x='time_t'
             y ='area_t'
             col = 'class'
