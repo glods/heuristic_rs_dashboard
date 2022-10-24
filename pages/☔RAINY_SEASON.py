@@ -752,12 +752,14 @@ elif st.checkbox('FLOODING ESTIMATES 💦'):
         dataval = pd.read_csv('data/DATA_TO_SHARE/rain_2022_update/grid52/flooding_Dagana2022.csv')
         datap = pd.read_csv('data/DATA_TO_SHARE/rain_2022_update/grid52/flooding_proportion_Dagana2022.csv')
         st.write('DATA - FLOODING')
-        st.write(dataval)
+        if st.checkbox('Show raw data'):
+            st.write(dataval)
         st.write('DATA - PROPORTION')
         # st.write(datap)
         st.write('=========== Complete images - ')
         data_upda = pd.read_csv('data/DATA_TO_SHARE/rain_2022_update/grid52/up/flooding_proportion_Dagana2022.csv')
-        st.write(data_upda)
+        if st.checkbox('Show raw data'):
+            st.write(data_upda)
 
         st.write('----------------------------')
 

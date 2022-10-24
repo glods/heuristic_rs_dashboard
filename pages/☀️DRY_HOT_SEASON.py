@@ -9,6 +9,7 @@ import seaborn as sns
 # import geopandas as gpd
 # import fiona
 from PIL import Image
+import gompertz_eval_dhs_2022
 
 
 
@@ -803,7 +804,8 @@ elif st.checkbox('FLOODING ESTIMATES 💦'):
 
                     i += 1
                     cpt+=1
-
+    if 'GOMPERTZ-EVALUATION' in vizuals:
+        gompertz_eval_dhs_2022.gompertz_eval_dhs_2022()
 #======================== COMPARISON BY YEAR =================================
         # c3, c4 = st.columns(2)
         # # datau = pd.read_csv('/home/glorie/Documents/DASHBOARD/compararison/data_prediction_dhs.csv')

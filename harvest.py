@@ -65,8 +65,6 @@ def harvest():
     data = data[data['harvest_date'] != '0']
     data[DATE_COLUMN] = pd.to_datetime(data[DATE_COLUMN])
 
-
-
     # Some number in the range 0-23
     # hour_to_filter = st.slider('Month', 0, 5, 2)
     # hour_to_filter = st.radio(label="Month :", options=[1, 2, 3, 4, 5], index=2)
