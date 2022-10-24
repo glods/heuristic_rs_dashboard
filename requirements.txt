@@ -1,7 +1,10 @@
+streamlit
 geopandas
 plotly
 matplotlib
 seaborn
+altair
+pandas
 
 
 
