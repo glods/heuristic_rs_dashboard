@@ -14,7 +14,7 @@ from PIL import Image
 
 #opening the image
 
-import geoplot as  gplt
+# import geoplot as  gplt
 import json
 st.set_page_config(layout="wide", page_icon="☀",)
 if st.checkbox('HARVEST ESTIMATES '):
