@@ -1,8 +1,7 @@
+geopandas
 plotly
 matplotlib
 seaborn
-cartopy
-geoplot
-geopandas
+
 
 
