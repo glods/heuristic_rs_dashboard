@@ -1,5 +1,7 @@
 plotly
 matplotlib
 seaborn
+geoplot
+geopandas
 
 

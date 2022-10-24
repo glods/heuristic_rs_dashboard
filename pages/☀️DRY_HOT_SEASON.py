@@ -6,8 +6,8 @@ import plotly.express as px
 import plotly.figure_factory as ff
 import plotly.graph_objects as go
 import seaborn as sns
-import geopandas as gpd
-import fiona
+# import geopandas as gpd
+# import fiona
 from PIL import Image
 
 
@@ -23,8 +23,8 @@ if st.checkbox('HARVEST ESTIMATES '):
     harvest.harvest()
 elif st.checkbox('FLOODING ESTIMATES 💦'):
 
-    fiona.drvsupport.supported_drivers['geojson'] = 'rw' # enable KML support which is disabled by default
-    fiona.drvsupport.supported_drivers['GeoJSON'] = 'rw'
+    # fiona.drvsupport.supported_drivers['geojson'] = 'rw' # enable KML support which is disabled by default
+    # fiona.drvsupport.supported_drivers['GeoJSON'] = 'rw'
     ##============================= INPUT DATA=============================
     #for grid level
 
@@ -42,10 +42,12 @@ elif st.checkbox('FLOODING ESTIMATES 💦'):
 
 
     datagridlevel = 'data/dag_grid2917.csv'
+
     # DATE_COLUMN = 'date'
     DATE_COLUMN = 'flooding_date'
     i='2019'
     DATA_URL =  'data/DATA_TO_SHARE/GRID2917-20220922T122839Z-001/GRID2917/Dagana/DRY_HOT_SEASON/'+i+'/flooding/flooding_Dagana'+i+'.csv'
+    # datagridlevel = DATA_URL
     #'/home/glorie/Documents/DASHBOARD/streamlit/GRID2917/data/dag_grid2917.csv'
     @st.cache
     def load_data(nrows):
@@ -97,13 +99,13 @@ elif st.checkbox('FLOODING ESTIMATES 💦'):
     season ='DRY_HOT_SEASON'
     y = ['2019' ,'2020', '2021', '2022']
 
-    datahist  = gpd.GeoDataFrame()
-    datahist1  = gpd.GeoDataFrame()
+    datahist  = pd.DataFrame()
+    datahist1  = pd.DataFrame()
     for i in y :
         datav = pd.read_csv('data/DATA_TO_SHARE/GRID2917-20220922T122839Z-001/GRID2917/Dagana/'+season+'/'+i+'/flooding/flooding_Dagana'+i+'.csv' )
         datav =datav[['ID','flooding_date', 'aoi_area', 'total_flooding_area', 'latitude', 'longitude', 'geometry' ]]
         datav = datav[datav['flooding_date']!='0' ]
-        datatmp =gpd.GeoDataFrame()
+        datatmp =pd.DataFrame()
         # datatmp[i] = pd.to_datetime( datav.flooding_date ).dt.dayofyear
 
         # cold = [c for c in datav.columns if i in c]
@@ -423,10 +425,10 @@ elif st.checkbox('FLOODING ESTIMATES 💦'):
 
             # struct = {}
             # try:
-            geo = pd.read_csv(datag)
-            # geo = gpd.GeoDataFrame(geo, crs="EPSG:4326")
-            gs = gpd.GeoSeries.from_wkt(geo['geometry'])
-            geo = gpd.GeoDataFrame(geo, geometry=gs, crs="EPSG:4326")
+            # geo = pd.read_csv(datag)
+            # # geo = gpd.GeoDataFrame(geo, crs="EPSG:4326")
+            # gs = gpd.GeoSeries.from_wkt(geo['geometry'])
+            # geo = gpd.GeoDataFrame(geo, geometry=gs, crs="EPSG:4326")
             # except:
             #     st.write('error')
             #     print( sys.exc_info() )
@@ -438,28 +440,28 @@ elif st.checkbox('FLOODING ESTIMATES 💦'):
             # Add title and header
 
 
-            # Geographic Map
-            fig = go.Figure(
-                go.Choroplethmapbox(
-                    geojson=geo,
-                    # locations=df_gb_canton.kan_name,
-                    # featureidkey="properties.kan_name",
-                    z=geo['flooding_date'],
-                    colorscale="sunsetdark",
-                    # zmin=0,
-                    # zmax=500000,
-                    # marker_opacity=0.5,
-                    # marker_line_width=0,
-                )
-            )
-            fig.update_layout(
-                mapbox_style="carto-positron",
-                mapbox_zoom=6.6,
-                mapbox_center={"lat": 46.8, "lon": 8.2},
-                width=800,
-                height=600,
-            )
-            fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
+            # # Geographic Map
+            # fig = go.Figure(
+            #     go.Choroplethmapbox(
+            #         geojson=geo,
+            #         # locations=df_gb_canton.kan_name,
+            #         # featureidkey="properties.kan_name",
+            #         z=geo['flooding_date'],
+            #         colorscale="sunsetdark",
+            #         # zmin=0,
+            #         # zmax=500000,
+            #         # marker_opacity=0.5,
+            #         # marker_line_width=0,
+            #     )
+            # )
+            # fig.update_layout(
+            #     mapbox_style="carto-positron",
+            #     mapbox_zoom=6.6,
+            #     mapbox_center={"lat": 46.8, "lon": 8.2},
+            #     width=800,
+            #     height=600,
+            # )
+            # fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
             # st.plotly_chart(fig)
             # fig.write_image("fig1.png")
             ######################################################################################################
@@ -467,11 +469,12 @@ elif st.checkbox('FLOODING ESTIMATES 💦'):
             # gdf_path = ''
             # geo = pd.read_csv(datag)
             # geo = gpd.GeoDataFrame(geo, crs="EPSG:4326")
-            gs = gpd.GeoSeries.from_wkt(datageo['geometry'])
-            gdfall = gpd.GeoDataFrame(datageo, geometry=gs, crs="EPSG:4326")
+            # gs = gpd.GeoSeries.from_wkt(datageo['geometry'])
+            # gdfall = gpd.GeoDataFrame(datageo, geometry=gs, crs="EPSG:4326")
             # st.write(gdfall)
+            gdfall =datageo
 
-            gdf = gdfall[['ID','2019', 'geometry', 'latitude', 'longitude']]
+            gdf = gdfall[['ID','2019', 'latitude', 'longitude']]
             # gdf['month'] = '2019'
             # st.write(gdf)
             # gdf['month'] = pd.to_datetime(gdf['month'] * 1000 + gdf['2019'], format='%Y%j')
@@ -490,8 +493,8 @@ elif st.checkbox('FLOODING ESTIMATES 💦'):
             # param = y
             # gdfx_ [ param] = dfx_[param]
             on_column = '2019'
-            gdf['coords'] = gdf['geometry'].apply(lambda x: x.centroid.coords[:])
-            gdf['coords'] = [coords[0] for coords in gdf['coords']]
+            # gdf['coords'] = gdf['geometry'].apply(lambda x: x.centroid.coords[:])
+            # gdf['coords'] = [coords[0] for coords in gdf['coords']]
             # gdf['latitude'] = [coords[1] for coords in gdf['coords']]
             # gdf['longitude'] = [coords[0] for coords in gdf['coords']]
 
@@ -501,22 +504,22 @@ elif st.checkbox('FLOODING ESTIMATES 💦'):
             #                         color_continuous_scale=px.colors.sequential.Rainbow, zoom=6,
             #                         height=600, color=on_column, #size=oncolumn
             #
-            #                         )
-            fig.update_layout(mapbox_style= 'white-bg') #"open-street-map") , 'dark-bg'
-            fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
-            # LAYOUT VAN DE VISUALISATIE
-            fig.update_layout(
-                font_family="Poppins",
-                font_color="#002072",
-                title_font_family="Poppins",
-                title_font_color="#002072",
-                legend_title="Distribution of flooding events",
-                legend_title_font_color="#002072",
-            )
-            # st.plotly_chart(fig, use_container_width=True, )
-
-
-            fig = px.choropleth(gdf, locations='ID', color=on_column)
+            # #                         )
+            # fig.update_layout(mapbox_style= 'white-bg') #"open-street-map") , 'dark-bg'
+            # fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
+            # # LAYOUT VAN DE VISUALISATIE
+            # fig.update_layout(
+            #     font_family="Poppins",
+            #     font_color="#002072",
+            #     title_font_family="Poppins",
+            #     title_font_color="#002072",
+            #     legend_title="Distribution of flooding events",
+            #     legend_title_font_color="#002072",
+            # )
+            # # st.plotly_chart(fig, use_container_width=True, )
+            #
+            #
+            # fig = px.choropleth(gdf, locations='ID', color=on_column)
 
 
             # st.plotly_chart(fig, use_container_width=True, )
