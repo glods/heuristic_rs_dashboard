@@ -1,13 +1,8 @@
 import streamlit as st
 import pandas as pd
-import pydeck as pdk
-from urllib.error import URLError
-import numpy as np
-import altair as alt
-import matplotlib.pyplot as plt
 import functions
 import harvest_rainy
-import feedback
+
 import plotly.express as px
 import plotly.figure_factory as ff
 import plotly.graph_objects as go
@@ -17,8 +12,6 @@ import fiona
 import os
 import gompertz_eval__rain_with_s1
 
-import geoplot as  gplt
-import json
 st.set_page_config(layout="wide", page_icon="☔",)
 if st.checkbox('HARVEST ESTIMATES '):
     st.markdown("# GRID 2917  VISUALISATION : HARVEST ")

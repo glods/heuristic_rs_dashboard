@@ -1,13 +1,7 @@
 import streamlit as st
 import pandas as pd
-import pydeck as pdk
-from urllib.error import URLError
-import numpy as np
-import altair as alt
-import matplotlib.pyplot as plt
 import functions
 import harvest
-import feedback
 import plotly.express as px
 import plotly.figure_factory as ff
 import plotly.graph_objects as go
