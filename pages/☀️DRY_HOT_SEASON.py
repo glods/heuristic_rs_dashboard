@@ -219,7 +219,7 @@ elif st.checkbox('FLOODING ESTIMATES 💦'):
     all_vizuals = [
                     'Summary statistics',
                    'Distribution of Numerical Columns', 'Box Plots', 'geospatial distribution', 'GRID-LEVEL ANALYSIS',
-    'COMPARISON'
+    'COMPARISON', 'GOMPERTZ-EVALUATION'
                    ]
     # functions.sidebar_space(3)
     vizuals = st.sidebar.multiselect("Choose which visualizations you want to see 👇", all_vizuals)
